@@ -172,7 +172,7 @@ class BinaryTokenSignature:
         cert_der = str(cert).decode("base64")
         public_key = xmlsec.x509_extract_rsa_public_key(cert_der, binary=True)
         # validate the certificate using the certification authority:
-        self.cacert = open(self.cacert).read()
+        self.cacert = open(self.cacert).read() if self.cacert else None
         if not self.cacert:
             warnings.warn("No CA provided, WSSE not validating certificate")
             pass
